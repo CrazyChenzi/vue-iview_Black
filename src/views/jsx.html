@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app"></div>
+
+<script>
+    const App = {
+        render() {
+            return <Counter initialCount={0} />
+        }
+    }
+
+    const Counter = {
+        props: ['initialCount'],
+        data() {
+            return {
+            count: this.initialCount
+            }
+        },
+        render() {
+            return (
+            <button
+                class="button"
+                onClick={() => this.count++}>
+                {this.count}
+            </button>
+            )
+        }
+    }
+
+    new Vue({
+        el: '#app',
+        render: h => h(App)
+    })
+
+</script>
+<style>
+    .button {
+    color: white;
+    border: 1px solid #e2e2e2;
+    background: magenta;
+    padding: 20px 0;
+    font-size: 2rem;
+    width: 200px;
+    }
+</style>
+</body>
+</html>

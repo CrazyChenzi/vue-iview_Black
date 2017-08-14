@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="hook-arguments-example" v-demo-directive="{ color: 'white', text: 'hello!' }">
+
+  </div> 
+ <div id="output"></div>
+<!-- <script src="../../static/getter.js"></script> -->
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+ <script crossorigin src="https://unpkg.com/react@15/dist/react.js"></script> 
+<!-- <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> -->
+<!-- <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script> -->
+<!-- <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script> -->
+ <script type="text/babel">
+  const getMessage = () => "Hello World";
+  document.getElementById('output').innerHTML = getMessage();
+
+  Vue.directive('demoDirective', function(el, binding, vnode){
+    console.log(binding.value.color);
+    console.log(binding.value.text);
+  });
+  var vm = new Vue({
+    el: '#hook-arguments-example',
+    data: {
+      message:'this is jsx demo',
+    },
+    // render: function (createElement) {
+    //   return createElement('h1','Hello World')
+    // },
+    // render (h) {
+    //   return (
+    //     <div>
+    //       <span>Hello</span> world!
+    //     </div>
+    //   )
+    // },
+
+    render (){
+      const h = this.$createElement
+      console.log(h)
+      return (
+        <div>HELLO WORLD</div>
+      )
+    }
+  })
+</script> 
+<!-- <script lang="ts">
+  function greeter(person) {
+    return "Hello, " + person;
+  }
+
+  var user = "Jane User";
+
+  document.body.innerHTML = greeter(user);
+</script> -->
+</body>
+</html>

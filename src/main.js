@@ -22,8 +22,11 @@ Vue.use(ElementUI);
 Vue.component('icon', Icon)
 
 Vue.directive('btnDisabled',function(el,binding,vnode,oldVnode){
+  console.log(binding.value )
   if(binding.value === false){
     el.style.display="none"
+  }else{
+    el.style.display=""
   }
 })
 Icon.register({

@@ -1,5 +1,6 @@
 <template>
 <div>
+
   <div id="attendanceTable" style="height:500px">
 
   </div>
@@ -7,6 +8,7 @@
 </template>
 <script>
     import echarts from 'echarts'
+    import loading from '../../components/spin/spin.vue'
     export default {
         data () {
             return {
@@ -65,6 +67,7 @@
                 ]
             }
         },
+        components: {loading},
         created(){
           this.uncoilChartsList();
         },
@@ -91,6 +94,32 @@
               KList.push(this.judgeChartsList(this.chartsList[i].KNum));
             }
             let arrayList = [];
+            // 因为series所接受的格式是
+            // series[{
+            //   data:[YNum,YNum,YNum,YNum,YNum,YNum,YNum]
+            // }]
+            // 而数据源格式是
+            // 周一
+            // {
+            //   YNum: 60,
+            //   SNum: 24,
+            // },
+            // 周二
+            // {
+            //   YNum: 60,
+            //   SNum: 24,
+            // },
+            // 故此：需要上面的for重组数据
+            //
+            // {
+            //   YNum: 60, 周一
+            //   YNum: 24, --
+            //   YNum: '', --
+            //   YNum: '', --
+            //   YNum: '', --
+            //   YNum: '', --
+            //   YNum: '', 周天
+            // },
             arrayList.push(YList);
             arrayList.push(SList);
             arrayList.push(NList);

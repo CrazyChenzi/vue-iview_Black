@@ -1,27 +1,23 @@
 <template>
   <div>
-    <Table highlight-row :columns="columns3" :data="data1" @on-row-click="rowClick"></Table>
-    <div style="float: left;">
-      <button @click="save">提交</button>
-      <button id="btn" >隐藏</button>
-    </div>
-    <inputVal :inputValue="inputValue"></inputVal>
-    覆盖移动终端:
+    <Table highlight-row :columns="columns3" :data="data1" @on-row-click=""></Table>
+    <!-- <inputVal :inputValue="inputValue"></inputVal> -->
+    <!-- 覆盖移动终端:
     {{ 3731700153 |  NumberSeparator }}
-    <h2 v-time></h2>
+    <h2 v-time></h2> -->
   </div>
 </template>
 <script>
-  import NumberSeparator from '../filters/number-separator';
-  import Time from '../directives/time';
-  import inputVal from '../components/input.vue'
+  // import NumberSeparator from '../filters/number-separator';
+  // import Time from '../directives/time';
+  // import inputVal from '../components/input.vue'
   export default {
-    filters: {
-      NumberSeparator
-    },
-    directives: {
-      time: Time
-    },
+    // filters: {
+    //   NumberSeparator
+    // },
+    // directives: {
+    //   time: Time
+    // },
     data () {
       return {
         columns3: [
@@ -143,32 +139,17 @@
           {name:'周小伟',value:4},
         ],
         rowData:{},
-        inputValue:{
-            value:''
-        },
+        // inputValue:{
+        //     value:''
+        // },
       }
     },
-    components: {
-      inputVal,
-    },
+    // components: {
+    //   inputVal,
+    // },
     watch:{
-      rowData(newVal,oldVal){
-          if(oldVal.age !== undefined){
-              if(newVal.age !== oldVal.age){
-//                document.getElementById('btn').click();
-              }
-          }
-      }
     },
     methods:{
-      save(){
-        Time.update();
-//        Time.update();
-      },
-      rowClick(row){
-        this.rowData = row;
-//          document.getElementById('btn').click();
-      },
     }
   }
 </script>

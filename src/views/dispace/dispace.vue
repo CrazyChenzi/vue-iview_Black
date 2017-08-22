@@ -1,17 +1,16 @@
 <template>
     <div>
-        <!-- <input v-model="dir1" v-my-directive1="dir1"/> -->
-　　　　 <!--<input v-model="dir2"  v-btn-Disabled="dir2"/>-->
-        <Button type="primary" v-btn-Disabled="isAdd" >点击</Button>
-        <div v-drag :style="{width:'100px', height:'100px', background:'aqua', position:'absolute', right:0, top:0}">
-        </div>
+      <Button @click="openModel" v-btn-Disabled="!isAdd" >
+        点击打开弹框
+      </Button>
         <Modal
             v-model="isAdd"
-            title="普通的Modal对话框标题"
-                v-drag
-                class="modelId"
                 :mask-closable="false"
             >
+            <p slot="header" style="text-align:center;cursor:move" v-drag>
+                <Icon type="information-circled"></Icon>
+                <span>普通的Modal对话框标题</span>
+            </p>
             <p>对话框内容</p>
             <p>对话框内容</p>
             <p>对话框内容</p>
@@ -22,12 +21,15 @@
     export default {
         data(){
             return {
-                self: this,
-　　　　　　　　　dir1:'',
-　　　　　　　　　dir2:'',
-                isAdd: true,
-                changeStyle:{top:'20px',left:'-500px'},
-　　　　　　　}
+              isAdd: false
+　　　　　　 }
+        },
+        methods: {
+          openModel : function() {
+            document.getElementsByClassName('ivu-modal')[0].style.left = '';
+            document.getElementsByClassName('ivu-modal')[0].style.top = '';
+            this.isAdd = true;
+          }
         },
         directives:{
             drag(el){
@@ -44,6 +46,7 @@
                         manyTop = "";
                     }else {
                         disY = ev.clientY - oDiv.offsetTop;
+                        disY = 30;
                     }
                     if(i !==1 && manyLeft!==""){
                         disX = ev.clientX - Number(manyLeft.slice(0,manyLeft.length-2));
@@ -54,6 +57,7 @@
                     document.onmousemove = function(ev){
                         var l = ev.clientX-disX;
                         var t = ev.clientY-disY;
+
                         i = 2;
                         document.getElementsByClassName('ivu-modal')[0].style.left = l+'px';
                         document.getElementsByClassName('ivu-modal')[0].style.top = t+'px';
@@ -71,28 +75,5 @@
                 }
             }
         }
-//         directives:{
-// 　　　　　　　//直接绑定函数，作用等同于update,不做准备工作和扫尾工作
-//             // myDirective1(val){
-//             //     // console.log(val)
-//             // },
-// 　　　　　　 myDirective2:{
-//                     bind(){
-// 　　　　　　　　　　　　　//第一次绑定到元素的准备工作
-// 　　　　　　　　　　},
-//                     update(el,binding){
-// 　　　　　　　　　　　　//在绑定到元素后立即以初始值第一次调用，然后每次example2变化都会调用update
-//                     if(binding.value!==""){
-//                         el.style.color = 'red'
-//                     }
-                    
-// 　　　　　　　　　　　　console.log(el)
-// 　　　　　　　　　　　　console.log(binding)
-// 　　　　　　　　　　},　　
-//                     unbind(){
-// 　　　　　　　　　　　　//销毁前的清理工作
-// 　　　　　　　　　　}
-// 　　　　　　　}
-//         }
     }
-</script>  
+</script>

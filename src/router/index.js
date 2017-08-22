@@ -6,6 +6,7 @@ import Upload from '@/views/upload.vue'
 import Table from '@/views/table.vue'
 import Dispace from '@/views/dispace.vue'
 import DateDemo from '@/views/dateDemo.vue'
+const EchartsDemo = resolve => require(['@/views/echartsDemo/echarts.vue'], resolve)
 
 Vue.use(Router);
 
@@ -16,6 +17,10 @@ export default new Router({
       path: '/',
       name: 'Hello',
       component: Hello
+    },
+    {
+      path: '/echarts',
+      component: EchartsDemo
     },
     {
       path: '/tree',

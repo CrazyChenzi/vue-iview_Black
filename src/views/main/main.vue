@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="layout-copy">
-                    {{new Date() | dateformat}} &copy; Black_晨
+                   <!-- {{new Date(),'测试' | dateformat}} &copy; Black_晨-->
                 </div>
             </i-col>
         </Row>
@@ -144,16 +144,16 @@
     					}
     				})()
     			}
-    			window.onload = () => {
-    				return(() => {
-    					this.heights = document.documentElement.clientHeight;
-    					if(document.documentElement.clientWidth > 1360) {
-    						this.widths = document.documentElement.clientWidth;
-    					} else {
-    						this.widths = 170;
-    					}
-    				})()
-    			}
+            window.onload = () => {
+                return(() => {
+                    this.heights = document.documentElement.clientHeight;
+                    if(document.documentElement.clientWidth > 1360) {
+                        this.widths = document.documentElement.clientWidth;
+                    } else {
+                        this.widths = 170;
+                    }
+                })()
+            }
           // 使用 Mock
           var Mock = require('mockjs')
           var data = Mock.mock({

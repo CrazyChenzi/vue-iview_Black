@@ -10,13 +10,16 @@ const Table = resolve => require(['@/views/table/table.vue'], resolve)
 const Dispace = resolve => require(['@/views/dispace/dispace.vue'], resolve)
 const DateDemo = resolve => require(['@/views/dateDemo/dateDemo.vue'], resolve)
 const EchartsDemo = resolve => require(['@/views/echartsDemo/echarts.vue'], resolve)
+const NotFound = resolve => require(['@/views/404/404.vue'], resolve)
 
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
   routes: [
+    { path: '*', component:NotFound},
     { path: '/', component: Login },  //登录界面！
+    { path: '/login', component: Login },  //登录界面！
     { path: '/hello', component: Hello },  //登录界面！
     {
       path: '/main', component: Main,

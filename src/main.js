@@ -76,6 +76,36 @@ Icon.register({
   }
 })
 
+var detectBack = {
+    initialize: function() {
+        //监听hashchange事件
+        window.addEventListener('hashchange', function() {
+
+            //为当前导航页附加一个tag
+            this.history.replaceState('hasHash', '', '');
+
+        }, false);
+    },
+    load : function() {
+      window.addEventListener('popstate', function(e) {
+          if (e.state) {
+              //侦测是用户触发的后退操作, dosomething
+              //这里刷新当前url
+              this.location.reload();
+          }
+      }, false);
+    }
+}
+
+router.beforeEach((to, from, next) => {
+  if(to.path === "/" || to.path === "/login"){
+    detectBack.load();
+    next();
+  }else{
+    detectBack.initialize();
+    next();
+  }
+});
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

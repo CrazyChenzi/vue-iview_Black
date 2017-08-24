@@ -1,4 +1,4 @@
-export default function (str) {
+export default function (str,name) {
     if (str===null||typeof str === 'undefined'||str === '') {
       return undefined
     } else {

@@ -39,14 +39,14 @@
                       <loading ref="spin"></loading>
                       <transition name="slide-fade">
                        <p v-if="!transitionIf">
-                         <router-view></router-view>
+                         <router-view :style="{height:heights-180+'px'}"></router-view>
                        </p>
                       </transition>
 
                     </div>
                 </div>
                 <div class="layout-copy">
-                   <!-- {{new Date(),'测试' | dateformat}} &copy; Black_晨-->
+                   {{new Date() | dateformat}} &copy; Black_晨
                 </div>
             </i-col>
         </Row>
@@ -126,6 +126,7 @@
         },
         components: {loading},
         created(){
+          localStorage.removeItem("load");
           this.getMenuFixed(this.$router.currentRoute.path);
         },
         mounted(){

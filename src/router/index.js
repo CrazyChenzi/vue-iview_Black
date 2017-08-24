@@ -19,17 +19,16 @@ export default new Router({
   routes: [
     { path: '*', component:NotFound},
     { path: '/', component: Login },  //登录界面！
-    { path: '/login', component: Login },  //登录界面！
-    { path: '/hello', component: Hello },  //登录界面！
+    { path: '/hello', meta: { requireAuth: true}, component: Hello },  //登录界面！
     {
-      path: '/main', component: Main,
+      path: '/main', meta: { requireAuth: true}, component: Main,
       children: [
-        { path: 'echarts', component: EchartsDemo }, //图表!
-        { path: 'dateDemo', component: DateDemo }, //时间！
-        { path: 'tree', component: Tree }, //树！
-        { path: 'upload', component: Upload }, //上传！
-        { path: 'table', component: Table }, //表格！
-        { path: 'dispace', component: Dispace }, //可拖拽弹框！
+        { path: 'echarts', meta: { requireAuth: true}, component: EchartsDemo }, //图表!
+        { path: 'dateDemo', meta: { requireAuth: true}, component: DateDemo }, //时间！
+        { path: 'tree', meta: { requireAuth: true}, component: Tree }, //树！
+        { path: 'upload', meta: { requireAuth: true}, component: Upload }, //上传！
+        { path: 'table', meta: { requireAuth: true}, component: Table }, //表格！
+        { path: 'dispace', meta: { requireAuth: true}, component: Dispace }, //可拖拽弹框！
       ]
     }, //首界面！
   ]

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Table highlight-row :columns="columns3" :data="data1" @on-row-click=""></Table>
+    <Table highlight-row :columns="columns3" :data="data1" @on-row-click="" size="small"></Table>
     <!-- <inputVal :inputValue="inputValue"></inputVal> -->
     <!-- 覆盖移动终端:
     {{ 3731700153 |  NumberSeparator }}

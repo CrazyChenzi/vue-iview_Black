@@ -76,35 +76,19 @@ Icon.register({
   }
 })
 
-var detectBack = {
-    initialize: function() {
-        //监听hashchange事件
-        window.addEventListener('hashchange', function() {
-
-            //为当前导航页附加一个tag
-            this.history.replaceState('hasHash', '', '');
-
-        }, false);
-    },
-    load : function() {
-      window.addEventListener('popstate', function(e) {
-          if (e.state) {
-              //侦测是用户触发的后退操作, dosomething
-              //这里刷新当前url
-              this.location.reload();
-          }
-      }, false);
-    }
-}
-
 router.beforeEach((to, from, next) => {
-  if(to.path === "/" || to.path === "/login"){
-    detectBack.load();
-    next();
-  }else{
-    detectBack.initialize();
-    next();
-  }
+  if (to.meta.requireAuth) { // 判断该路由是否需要登录权限
+        if (localStorage.getItem("loginName") !== null && localStorage.getItem("loginPwd") !== null) { // 通过vuex state获取当前的token是否存在
+            next();
+        } else {
+            next({
+                path: '/',
+                query: { redirect: to.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+            })
+        }
+    } else {
+        next();
+    }
 });
 /* eslint-disable no-new */
 new Vue({

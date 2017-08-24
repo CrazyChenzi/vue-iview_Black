@@ -1,10 +1,12 @@
 <template>
   <div class="body-class">
-    <canvas id="canvas"></canvas>
+    <div>
+        <canvas id="canvas"></canvas>
+    </div>
     <Card dis-hover	 class="cardBack">
         <div style="text-align:center">
             <div class="githubDiv" @click="openMyGithub">
-                <span style="color:#fff;font-size:20px">创始人：Black_晨</span>
+                <span style="color:#fff;font-size:20px">开发者：Black_晨</span>
                 <span>&nbsp;&nbsp;&copy;Github</span>
             </div>
             <Form ref="formInline" :model="formInline" :rules="ruleInline">
@@ -46,6 +48,12 @@
             }
         },
         mounted() {
+            if(localStorage.loginName !== undefined) {
+                localStorage.removeItem("loginName");
+            }
+            if(localStorage.loginPwd !== undefined) {
+                localStorage.removeItem("loginPwd");
+            }
             this.showCanvas();
             // window.onresize = () => {
             //     document.addEventListener('click', function(){
@@ -343,11 +351,22 @@
                     };
                 
                 })(window);
+                if(localStorage.load === undefined){
+                    window.location.reload();
+                }
+                if(this.$router.currentRoute.path === '/'){
+                    localStorage.load=true;
+                }
+                console.log(localStorage)
             },
             handleSubmit(name) {
                 this.$refs[name].validate((valid) => {
                     if (valid) {
+                        localStorage.loginName = this.formInline.user;
+                        localStorage.loginPwd = this.formInline.password;
                         this.$router.push({path:'/main/echarts'})
+                        localStorage.removeItem("load");
+                        console.log(localStorage,"----")
                     } else {
                         this.$Message.error('表单验证失败!');
                     }

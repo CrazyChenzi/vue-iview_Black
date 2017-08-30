@@ -1,5 +1,8 @@
 <template>
     <div>
+        <Button @click="openModel" v-btn-Disabled="!isAdd" >
+            点击打开弹框
+        </Button>
         <Modal
             v-model="isAdd"
                 :mask-closable="false"
@@ -22,11 +25,11 @@
 </template>
 
 <script>
-    import dargs from '../../static/js/drag.1.0'
+    import dargs from '../../../static/js/drag.1.0'
   export default {
     data() {
       return {
-         isAdd:true
+         isAdd:false
       }
     },
     mounted(){
@@ -40,7 +43,9 @@
         }
     },
     methods: {
-        
+        openModel : function () {
+            this.isAdd = true;
+        }
     }
   }
 </script>

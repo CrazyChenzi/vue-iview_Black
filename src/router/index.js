@@ -8,10 +8,10 @@ const Tree = resolve => require(['@/views/tree/tree.vue'], resolve)
 const Upload = resolve => require(['@/views/upload/upload.vue'], resolve)
 const Table = resolve => require(['@/views/table/table.vue'], resolve)
 const Dispace = resolve => require(['@/views/dispace/dispace.vue'], resolve)
+const DispaceTwo = resolve => require(['@/views/dispace/dispaceTwo.vue'], resolve)
 const DateDemo = resolve => require(['@/views/dateDemo/dateDemo.vue'], resolve)
 const EchartsDemo = resolve => require(['@/views/echartsDemo/echarts.vue'], resolve)
 const NotFound = resolve => require(['@/views/404/404.vue'], resolve)
-const Test = resolve => require(['@/views/test.vue'], resolve)
 
 Vue.use(Router);
 
@@ -19,7 +19,6 @@ export default new Router({
   mode: 'history',
   routes: [
     { path: '*', component:NotFound},
-    { path: '/test', component:Test},
     { path: '/', component: Login },  //登录界面！
     { path: '/hello', meta: { requireAuth: true}, component: Hello },  //登录界面！
     {
@@ -31,6 +30,7 @@ export default new Router({
         { path: 'upload', meta: { requireAuth: true}, component: Upload }, //上传！
         { path: 'table', meta: { requireAuth: true}, component: Table }, //表格！
         { path: 'dispace', meta: { requireAuth: true}, component: Dispace }, //可拖拽弹框！
+        { path: 'dispaceTwo', meta: { requireAuth: true}, component: DispaceTwo }, //可拖拽弹框！
       ]
     }, //首界面！
   ]

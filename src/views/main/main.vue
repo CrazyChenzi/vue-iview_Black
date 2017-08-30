@@ -71,6 +71,11 @@
               title:'',
               name:'table表格',
               key:'/main/table',
+            },
+            {
+              title:'',
+              name:'自定义控制时间',
+              key:'/main/dateDemo',
             }
           ]
         },
@@ -82,6 +87,11 @@
               title:'',
               name:'可拖拽弹框',
               key:'/main/dispace',
+            },
+            {
+              title:'',
+              name:'可拖拽弹框2',
+              key:'/main/dispaceTwo',
             }
           ]
         },

@@ -10,6 +10,7 @@ import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons/flag'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import VueI18n from 'vue-i18n'
 
 // or import all icons if you don't care about bundle size
 import 'vue-awesome/icons'
@@ -18,8 +19,26 @@ Vue.config.productionTip = false;
 
 Vue.use(iView);
 Vue.use(ElementUI);
+Vue.use(VueI18n)
 // Vue.use(Icon);
 Vue.component('icon', Icon)
+
+const messages = {
+  en: {
+    message: {
+      hello: 'hello world'
+    }
+  },
+  ja: {
+    message: {
+      hello: 'こんにちは、世界'
+    }
+  }
+}
+const i18n = new VueI18n({
+  locale: 'ja', // set locale
+  messages, // set locale messages
+})
 
 Vue.directive('btnDisabled',function(el,binding,vnode,oldVnode){
   console.log(binding.value )
@@ -92,6 +111,7 @@ router.beforeEach((to, from, next) => {
 });
 /* eslint-disable no-new */
 new Vue({
+  i18n,
   el: '#app',
   router,
   template: '<App/>',

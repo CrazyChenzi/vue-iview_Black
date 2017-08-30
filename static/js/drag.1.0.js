@@ -98,4 +98,4 @@ let drag = {
 	}, 
 	
 };
-export default  drag
+// export default  drag

@@ -1,16 +1,13 @@
 <template>
-<div>
-    <Row>
-        <Col span="12">
-            <Date-picker type="daterange" :options="options3" placeholder="选择日期" style="width: 200px"></Date-picker>
-        </Col>
-    </Row>
-   <p> {{$t('message.hello')}}</p>
-   <p> {{ $t('hello_in') }} {{ $i18n.locale }}</p>
-</div>
+    <div>
+        <Row>
+            <i-col span="12">
+                <Date-picker type="daterange" :options="options3" placeholder="选择日期" style="width: 200px"></Date-picker>
+            </i-col>
+        </Row>
+    </div>
 </template>
 <script>
-    
     export default {
         data () {
             return {
@@ -22,12 +19,8 @@
                 },
             }
         },
-    }
-</script>
-<i18n>
-    {
-        "en": {
-            "hello_in": "Hello in"
+        mounted(){
+            console.log(this)
         }
     }
-</i18n>
+</script>

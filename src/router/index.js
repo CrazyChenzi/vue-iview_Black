@@ -12,6 +12,7 @@ const DispaceTwo = resolve => require(['@/views/dispace/dispaceTwo.vue'], resolv
 const DateDemo = resolve => require(['@/views/dateDemo/dateDemo.vue'], resolve)
 const EchartsDemo = resolve => require(['@/views/echartsDemo/echarts.vue'], resolve)
 const NotFound = resolve => require(['@/views/404/404.vue'], resolve)
+const I18N = resolve => require(['@/views/locale/locale.vue'], resolve)
 
 Vue.use(Router);
 
@@ -31,6 +32,7 @@ export default new Router({
         { path: 'table', meta: { requireAuth: true}, component: Table }, //表格！
         { path: 'dispace', meta: { requireAuth: true}, component: Dispace }, //可拖拽弹框！
         { path: 'dispaceTwo', meta: { requireAuth: true}, component: DispaceTwo }, //可拖拽弹框！
+        { path: 'i18N', meta: { requireAuth: true}, component: I18N }, //国际化！
       ]
     }, //首界面！
   ]

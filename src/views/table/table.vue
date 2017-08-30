@@ -34,7 +34,7 @@
               return h('div', [
                 h('Input', {
                   props: {
-                    placeholder:'请输入....',
+                    placeholder: "请输入....",
                     value:params.row.name
                   },
                   'on': {

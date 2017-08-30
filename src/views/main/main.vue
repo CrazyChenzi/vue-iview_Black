@@ -39,10 +39,9 @@
                       <loading ref="spin"></loading>
                       <transition name="slide-fade">
                        <p v-if="!transitionIf">
-                         <router-view :style="{height:heights-180+'px'}"></router-view>
+                         <router-view :style="{height:heights-200+'px'}"></router-view>
                        </p>
                       </transition>
-
                     </div>
                 </div>
                 <div class="layout-copy">
@@ -100,9 +99,9 @@
           key:'3',
           temList:[
             {
-              title:'使用',
-              name:'用户管理一',
-              key:'3-1',
+              title:'',
+              name:'国际化',
+              key:'/main/i18N',
             },
             {
               title:'说明',

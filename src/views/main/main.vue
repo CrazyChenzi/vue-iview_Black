@@ -75,6 +75,11 @@
               title:'',
               name:'自定义控制时间',
               key:'/main/dateDemo',
+            },
+            {
+              title:'',
+              name:'树形组件',
+              key:'/main/tree',
             }
           ]
         },

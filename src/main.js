@@ -10,7 +10,6 @@ import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons/flag'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-// import i18n from './assets/js/i18n'
 
 // or import all icons if you don't care about bundle size
 import 'vue-awesome/icons'
@@ -93,7 +92,6 @@ router.beforeEach((to, from, next) => {
 });
 /* eslint-disable no-new */
 new Vue({
-  // i18n,
   el: '#app',
   router,
   template: '<App/>',

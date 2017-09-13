@@ -17,7 +17,7 @@
     </div>
 </template>
 <script>
-    import i18n from '../../assets/js/i18n'
+   //  import i18n from '../../assets/js/i18n'
     export default {
         // i18n,
         data () {

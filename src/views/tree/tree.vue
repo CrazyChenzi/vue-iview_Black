@@ -1,8 +1,8 @@
-<template>
+<!-- <template>
   <div>
     <Row>
-      <Col span="8">
-      <Tree :data="baseData" ref="deptree" show-checkbox></Tree>
+      <Col span="8" class="menuCard">
+         <Tree :data="baseData" ref="deptree" show-checkbox></Tree>
       </Col>
       <Col span="8">
       <Button @click="pushnode" type="primary" size="small">新增</Button>
@@ -56,14 +56,12 @@
     watch:{
       baseData: {
         handler:function(newVal, oldVal){
-          console.log('2222');
           this.$refs.deptree.$emit('checked',this.$refs.deptree.getCheckedNodes());//.updateData();
         },
         deep: true
       }
     },
     mounted(){
-      console.log(this.baseData)
     },
     methods: {
       getMenuNode(menus, id) {
@@ -95,3 +93,147 @@
     }
   }
 </script>
+<style scoped>
+.menuCard >>> .ivu-tree {
+padding-left: 10px;
+}
+.menuCard >>> .ivu-tree ul {
+font-size: 16px;
+}
+.menuCard >>> .ivu-tree-arrow {
+/*font-size: 19px;*/
+}
+</style> -->
+
+<template>
+   <div >
+      <el-tree
+        :data="data2"
+        :props="defaultProps"
+        show-checkbox
+        node-key="id"
+        default-expand-all
+        :expand-on-click-node="false"
+        :render-content="renderContent"
+        @check-change="changeTree"
+        ref="tree">
+      </el-tree>
+      <Button @click="save">点击</Button>
+      <Button @click="getTree">递归</Button>
+   </div>
+</template>
+<script>
+  let id = 1000;
+  export default {
+    data() {
+      return {
+        data2: [{
+          id: 1,
+          label: '一级 1',
+          ARRAY: [
+             {
+                name: '新增',
+                checked: false
+             },
+             {
+                name: '修改',
+                checked: false
+             },
+             {
+                name: '删除',
+                checked: false
+             }
+          ],
+          children: [{
+            id: 4,
+            label: '二级 1-1',
+            ARRAY: [
+               {
+                  name: '新增',
+                  checked: false
+               },
+               {
+                  name: '修改',
+                  checked: false
+               },
+               {
+                  name: '删除',
+                  checked: true
+               }
+            ],
+          }]
+        }, {
+          id: 2,
+          label: '一级 2',
+          ARRAY: [],
+          children: [{
+            id: 5,
+            label: '二级 2-1',
+            ARRAY: []
+          }, {
+            id: 6,
+            label: '二级 2-2',
+            ARRAY: []
+          }]
+        }],
+        defaultProps: {
+          children: 'children',
+          label: 'label'
+       },
+      }
+    },
+
+    methods: {
+      append(store, data) {
+        store.append({ id: id++, label: 'testtest', children: [] }, data);
+      },
+
+      remove(store, data) {
+        store.remove(data);
+      },
+      save(){
+         console.log(this.data2)
+      },
+      getTree(){
+
+      },
+      changeTree(dom,selection,children){
+         console.log(this.$refs.tree.getCheckedNodes())
+         // console.log(selection,"selection")
+         // console.log(dom,"dom")
+      },
+
+      renderContent(h, { node, data, store }) {
+         return h('span',[
+            h('span',{
+
+            },node.label),
+            h('span', [
+               data.ARRAY.map((item, index) => {
+                  return h('el-checkbox', {
+                     props:{
+                        checked: item.checked
+                     },
+                     style:{
+                        marginRight: '20px',
+                        float: 'right'
+                     },
+                     on: {
+                        change : (event) => {
+                           item.checked = !item.checked;
+                        }
+                     }
+                  },item.name)
+               })
+
+            ])
+         ])
+      }
+    }
+  };
+</script>
+<style>
+   .el-tree-node__content{
+         height: 40px;
+   }
+</style>

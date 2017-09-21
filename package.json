@@ -10,8 +10,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "echarts": "^3.6.2",
     "element-ui": "^1.3.5",
+    "es6-promise": "^4.1.1",
     "iview": "^2.0.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",

@@ -16,6 +16,8 @@ import 'vue-awesome/icons'
 
 Vue.config.productionTip = false;
 
+require('es6-promise').polyfill();
+
 Vue.use(iView);
 Vue.use(ElementUI);
 // Vue.use(Icon);

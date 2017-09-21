@@ -7,17 +7,17 @@
                     <Submenu :name="menu.key" v-for="(menu,index) in menuList" :key="index">
                         <template slot="title">
                             <Icon type="ios-paper" :size="iconSize"></Icon>
-                            <span>{{menu.temName}}</span>
+                            <span class="layout-text">{{menu.temName}}</span>
                         </template>
 
                         <Menu-item :name="tem.key" v-for="(tem,index) in menu.temList" :key="index" v-if="tem.title === ''">
                             <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            <span>{{tem.name}}</span>
+                            <span class="layout-text">{{tem.name}}</span>
                         </Menu-item>
                         <Menu-group :title="tem.title" v-for="(tem,index) in menu.temList" :key="index" v-if="tem.title !== ''">
                            <Menu-item :name="tem.key">
                              <Icon type="ios-navigate" :size="iconSize"></Icon>
-                             <span>{{tem.name}}</span>
+                             <span class="layout-text">{{tem.name}}</span>
                            </Menu-item>
                         </Menu-group>
                     </Submenu>
@@ -92,11 +92,11 @@
               name:'可拖拽弹框',
               key:'/main/dispace',
             },
-            {
-              title:'',
-              name:'可拖拽弹框2',
-              key:'/main/dispaceTwo',
-            }
+            // {
+            //   title:'',
+            //   name:'可拖拽弹框2',
+            //   key:'/main/dispaceTwo',
+            // }
           ]
         },
         {
@@ -135,7 +135,7 @@
         },
         computed: {
             iconSize () {
-                return this.spanLeft === 5 ? 14 : 24;
+                return this.spanLeft === 5 ? 14 : 20;
             }
         },
         components: {loading},
@@ -162,11 +162,7 @@
             window.onload = () => {
                 return(() => {
                     this.heights = document.documentElement.clientHeight;
-                    if(document.documentElement.clientWidth > 1360) {
-                        this.widths = document.documentElement.clientWidth;
-                    } else {
-                        this.widths = 170;
-                    }
+										this.widths = document.documentElement.clientWidth;
                 })()
             }
           // 使用 Mock
@@ -184,8 +180,8 @@
         methods: {
             toggleClick () {
                 if (this.spanLeft === 5) {
-                    this.spanLeft = 3;
-                    this.spanRight = 21;
+                    this.spanLeft = 1;
+                    this.spanRight = 23;
                 } else {
                     this.spanLeft = 5;
                     this.spanRight = 19;
@@ -225,6 +221,12 @@
     }
 </script>
 <style scoped>
+    .layout >>> .ivu-col-span-1{
+    width: 5%;
+    }
+    .layout >>> .ivu-col-span-23 {
+    width: 95%;
+    }
     /* 可以设置不同的进入和离开动画 */
     /* 设置持续时间和动画函数 */
     .slide-fade-enter-active {

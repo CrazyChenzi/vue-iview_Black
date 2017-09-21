@@ -8,16 +8,16 @@ const Tree = resolve => require(['@/views/tree/tree.vue'], resolve)
 const Upload = resolve => require(['@/views/upload/upload.vue'], resolve)
 const Table = resolve => require(['@/views/table/table.vue'], resolve)
 const Dispace = resolve => require(['@/views/dispace/dispace.vue'], resolve)
-const DispaceTwo = resolve => require(['@/views/dispace/dispaceTwo.vue'], resolve)
+// const DispaceTwo = resolve => require(['@/views/dispace/dispaceTwo.vue'], resolve)
 const DateDemo = resolve => require(['@/views/dateDemo/dateDemo.vue'], resolve)
 const EchartsDemo = resolve => require(['@/views/echartsDemo/echarts.vue'], resolve)
 const NotFound = resolve => require(['@/views/404/404.vue'], resolve)
-const I18N = resolve => require(['@/views/locale/locale.vue'], resolve)
+// const I18N = resolve => require(['@/views/locale/locale.vue'], resolve)
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     { path: '*', component:NotFound},
     { path: '/', component: Login },  //登录界面！
@@ -31,8 +31,8 @@ export default new Router({
         { path: 'upload', meta: { requireAuth: true}, component: Upload }, //上传！
         { path: 'table', meta: { requireAuth: true}, component: Table }, //表格！
         { path: 'dispace', meta: { requireAuth: true}, component: Dispace }, //可拖拽弹框！
-        { path: 'dispaceTwo', meta: { requireAuth: true}, component: DispaceTwo }, //可拖拽弹框！
-        { path: 'i18N', meta: { requireAuth: true}, component: I18N }, //国际化！
+        // { path: 'dispaceTwo', meta: { requireAuth: true}, component: DispaceTwo }, //可拖拽弹框！
+        // { path: 'i18N', meta: { requireAuth: true}, component: I18N }, //国际化！
       ]
     }, //首界面！
   ]

@@ -97,7 +97,19 @@
           },
           {
             title: '地址',
-            key: 'address'
+            key: 'address', 
+            render: (h, params) => {
+              let self = this;
+              return h('i-switch',{
+                props: {
+                  size: 'large'
+                }
+              },self.switchList.map(item => {
+                return h('span',{
+                  slot:item.slot
+                },item.name)
+              }))
+            }
           }
         ],
         data1: [
@@ -137,6 +149,16 @@
           {name:'张小刚',value:2},
           {name:'李小红',value:3},
           {name:'周小伟',value:4},
+        ],
+        switchList:[
+          {
+            slot: 'open',
+            name: '打开'
+          },
+          {
+            slot: 'close',
+            name: '关闭'
+          }
         ],
         rowData:{},
         // inputValue:{

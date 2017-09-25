@@ -10,9 +10,9 @@ import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons/flag'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-
 // or import all icons if you don't care about bundle size
 import 'vue-awesome/icons'
+import Axios from 'axios'
 
 Vue.config.productionTip = false;
 
@@ -21,7 +21,9 @@ require('es6-promise').polyfill();
 Vue.use(iView);
 Vue.use(ElementUI);
 // Vue.use(Icon);
-Vue.component('icon', Icon)
+Vue.component('icon', Icon);
+
+Vue.prototype.axios = Axios;
 
 Vue.directive('btnDisabled',function(el,binding,vnode,oldVnode){
   console.log(binding.value )

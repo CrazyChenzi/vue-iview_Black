@@ -1,231 +1,312 @@
 <template>
-    <div class="layout" :class="{'layout-hide-text': spanLeft < 5}" >
-        <Row type="flex" :style="{height:heights-2+'px'}">
-            <i-col :span="spanLeft" class="layout-menu-left">
-                <Menu :active-name="$router.currentRoute.path" theme="dark" width="auto" :open-names="openName" @on-select="selectionMenu" accordion>
-                    <div class="layout-logo-left"></div>
-                    <Submenu :name="menu.key" v-for="(menu,index) in menuList" :key="index">
-                        <template slot="title">
-                            <Icon type="ios-paper" :size="iconSize"></Icon>
-                            <span class="layout-text">{{menu.temName}}</span>
-                        </template>
-
-                        <Menu-item :name="tem.key" v-for="(tem,index) in menu.temList" :key="index" v-if="tem.title === ''">
-                            <Icon type="ios-navigate" :size="iconSize"></Icon>
-                            <span class="layout-text">{{tem.name}}</span>
-                        </Menu-item>
-                        <Menu-group :title="tem.title" v-for="(tem,index) in menu.temList" :key="index" v-if="tem.title !== ''">
-                           <Menu-item :name="tem.key">
-                             <Icon type="ios-navigate" :size="iconSize"></Icon>
-                             <span class="layout-text">{{tem.name}}</span>
-                           </Menu-item>
-                        </Menu-group>
-                    </Submenu>
-                </Menu>
-            </i-col>
-            <i-col :span="spanRight">
-                <div class="layout-header">
-                    <i-button type="text" @click="toggleClick">
-                        <Icon type="navicon" size="32"></Icon>
-                    </i-button>
-                </div>
-                <div class="layout-breadcrumb">
-                    <Breadcrumb>
-                        <Breadcrumb-item :href="item.breadHref" v-for="(item, index) in breadList" :key="index">{{item.breadName}}</Breadcrumb-item>
-                    </Breadcrumb>
-                </div>
-                <div class="layout-content">
-                    <div class="layout-content-main">
-                      <loading ref="spin"></loading>
-                      <transition name="slide-fade">
-                       <p v-if="!transitionIf">
-                         <router-view :style="{height:heights-200+'px'}"></router-view>
-                       </p>
-                      </transition>
-                    </div>
-                </div>
-                <div class="layout-copy">
-                   {{new Date() | dateformat}} &copy; Black_晨
-                </div>
-            </i-col>
-        </Row>
-    </div>
+	<div class="layout" :class="{'layout-hide-text': spanLeft < 5}" >
+		<div class="topMenu">
+			<Menu mode="horizontal" theme="dark" active-name="1">
+				<div class="layout-logo"><div style="text-align:center; color: #fff; margin-top: -15px"> &copy; Black_晨 </div></div>
+				<div class="layout-nav">
+					<MenuItem name="1">
+						<Icon type="ios-navigate"></Icon>
+						导航一
+					</MenuItem>
+					<MenuItem name="2">
+						<Icon type="ios-keypad"></Icon>
+						导航二
+					</MenuItem>
+					<MenuItem name="3">
+						<Icon type="ios-analytics"></Icon>
+						导航三
+					</MenuItem>
+					<MenuItem name="4">
+						<Icon type="ios-paper"></Icon>
+						导航四
+					</MenuItem>
+				</div>
+				<div class="topMenu_avatar">
+					<Badge count="1">
+						<Avatar style="color: #f56a00;background-color: #fde3cf">U</Avatar>
+					</Badge>
+				</div>
+				<Dropdown trigger="click" class="drop">
+					<a href="javascript:void(0)">
+							设置
+							<Icon type="arrow-down-b"></Icon>
+					</a>
+					<DropdownMenu slot="list">
+							<DropdownItem>系统设置</DropdownItem>
+							<DropdownItem>退出</DropdownItem>
+					</DropdownMenu>
+				</Dropdown>
+			</Menu>
+		</div>
+		<Row type="flex" :style="{height:heights-2+'px'}">
+			<i-col :span="spanLeft" class="layout-menu-left">
+				<Menu :active-name="$router.currentRoute.path" theme="dark" width="auto" :open-names="openName" @on-select="selectionMenu" accordion>
+					<Submenu :name="menu.key" v-for="(menu,index) in menuList" :key="index">
+						<template slot="title">
+							<Tooltip :content="menu.temName" placement="right" v-if="spanLeft < 5">
+								<Icon :type="menu.icon" :size="iconSize"></Icon>
+							</Tooltip>
+							<Icon :type="menu.icon" :size="iconSize" v-else></Icon>
+							<span class="layout-text">{{menu.temName}}</span>
+						</template>
+						<Menu-item :name="tem.key" v-for="(tem,index) in menu.temList" :key="index" v-if="tem.title === ''">
+							<Tooltip :content="tem.name" placement="right" v-if="spanLeft < 5">
+								<Icon :type="tem.icon" :size="iconSize"></Icon>
+							</Tooltip>
+							<Icon :type="tem.icon" :size="iconSize" v-else></Icon>
+							<span class="layout-text">{{tem.name}}</span>
+						</Menu-item>
+						<Menu-group :title="tem.title" v-for="(tem,index) in menu.temList" :key="index" v-if="tem.title !== ''">
+							<Menu-item :name="tem.key">
+								<Tooltip :content="tem.name" placement="right" v-if="spanLeft < 5">
+									<Icon :type="tem.icon" :size="iconSize"></Icon>
+								</Tooltip>
+								<Icon :type="tem.icon" :size="iconSize" v-else></Icon>
+								<span class="layout-text">{{tem.name}}</span>
+							</Menu-item>
+						</Menu-group>
+					</Submenu>
+				</Menu>
+			</i-col>
+			<i-col :span="spanRight">
+				<div class="layout-header">
+					<i-button type="text" @click="toggleClick">
+						<Icon type="navicon" size="32"></Icon>
+					</i-button>
+				</div>
+				<div class="layout-breadcrumb">
+					<Breadcrumb>
+						<Breadcrumb-item :href="item.breadHref" v-for="(item, index) in breadList" :key="index">{{item.breadName}}</Breadcrumb-item>
+					</Breadcrumb>
+				</div>
+				<div class="layout-content">
+					<div class="layout-content-main">
+						<loading ref="spin"></loading>
+						<transition name="slide-fade">
+							<p v-if="!transitionIf">
+								<router-view :style="{height:heights-200+'px'}"></router-view>
+							</p>
+						</transition>
+					</div>
+				</div>
+				<div class="layout-copy">
+					{{new Date() | dateformat}} &copy; Black_晨
+				</div>
+			</i-col>
+		</Row>
+	</div>
 </template>
 <script>
-    import dateformat from '../../filters/dateFormat'
-    import mock from 'mockjs'
-    import loading from '../../components/spin/spin.vue'
-    const menuItems = () => (
-      [
-        {
-          temName: '首页',
-          key:'1',
-          temList:[
-            {
-              title:'',
-              name:'echarts图标',
-              key:'/main/echarts',
-            },
-            {
-              title:'',
-              name:'table表格',
-              key:'/main/table',
-            },
-            {
-              title:'',
-              name:'自定义控制时间',
-              key:'/main/dateDemo',
-            },
-            {
-              title:'',
-              name:'树形组件',
-              key:'/main/tree',
-            }
-          ]
-        },
-        {
-          temName: '组件/自定义指令',
-          key:'2',
-          temList:[
-            {
-              title:'',
-              name:'可拖拽弹框',
-              key:'/main/dispace',
-            },
-            // {
-            //   title:'',
-            //   name:'可拖拽弹框2',
-            //   key:'/main/dispaceTwo',
-            // }
-          ]
-        },
-        {
-          temName: '统计分析',
-          key:'3',
-          temList:[
-            {
-              title:'',
-              name:'国际化',
-              key:'/main/i18N',
-            },
-            {
-              title:'说明',
-              name:'用户管理二',
-              key:'3-2',
-            }
-          ]
-        }
-      ]
-    )
-    export default {
-        filters: {
-          dateformat
-        },
-        data () {
-            return {
-                spanLeft: 5,
-                spanRight: 19,
-                heights: document.documentElement.clientHeight,
-                widths: document.documentElement.clientWidth,
-                menuList: menuItems(),
-                openName: [],
-                breadList: [],
-                transitionIf: true,
-            }
-        },
-        computed: {
-            iconSize () {
-                return this.spanLeft === 5 ? 14 : 20;
-            }
-        },
-        components: {loading},
-        created(){
-          localStorage.removeItem("load");
-          this.getMenuFixed(this.$router.currentRoute.path);
-        },
-        mounted(){
-          setTimeout(() => {
-            this.$refs.spin.show = false;
-            this.transitionIf = this.$refs.spin.show;
-          }, 2000);
-          this.heights = document.documentElement.clientHeight;
-          window.onresize = () => {
-    				return(() => {
-    					this.heights = document.documentElement.clientHeight;
-    					if(document.documentElement.clientWidth > 1360) {
-    						this.widths = document.documentElement.clientWidth;
-    					} else {
-    						this.widths = 170;
-    					}
-    				})()
-    			}
-            window.onload = () => {
-                return(() => {
-                    this.heights = document.documentElement.clientHeight;
-										this.widths = document.documentElement.clientWidth;
-                })()
-            }
-          // 使用 Mock
-          var Mock = require('mockjs')
-          var data = Mock.mock({
-              // 属性 list 的值是一个数组，其中含有 1 到 10 个元素
-              'list|1-10': [{
-                  // 属性 id 是一个自增数，起始值为 1，每次增 1
-                  'id|+1': 1
-              }]
-          })
-          // 输出结果
-          // console.log(JSON.stringify(data, null, 4))
-        },
-        methods: {
-            toggleClick () {
-                if (this.spanLeft === 5) {
-                    this.spanLeft = 1;
-                    this.spanRight = 23;
-                } else {
-                    this.spanLeft = 5;
-                    this.spanRight = 19;
-                }
-            },
-            selectionMenu : function(name) {
-              this.$refs.spin.show = true;
-              this.transitionIf = true;
-              setTimeout(() => {
-                this.$refs.spin.show = false;
-                this.transitionIf = this.$refs.spin.show;
-              }, 2000);
-              this.$router.push({path:name});
-              this.getMenuFixed(name);
-            },
-            getMenuFixed : function(name) {
-              this.breadList = [];
-              menuItems().forEach((menu, index) => {
-                menu.temList.forEach((item, index) => {
-                  if(item.key === name){
-                    let breadF = {
-                      breadName: menu.temName,
-                      breadHref: ''
-                    };
-                    let breadS = {
-                      breadName: item.name,
-                      breadHref: item.key
-                    };
-                    this.openName.push(menu.key);
-                    this.breadList.push(breadF);
-                    this.breadList.push(breadS);
-                  }
-                })
-              })
-            }
-        }
-    }
+	import dateformat from '../../filters/dateFormat'
+	import loading from '../../components/spin/spin.vue'
+	const menuItems = () => (
+		[
+			{
+				temName: '首页',
+				icon: 'home',
+				key:'1',
+				temList:[
+					{
+						title:'',
+						name:'echarts图表',
+						key:'/main/echarts',
+						icon: 'ios-photos'
+					},
+					{
+						title:'',
+						name:'table表格',
+						key:'/main/table',
+						icon: 'ios-grid-view-outline'
+					},
+					{
+						title:'',
+						name:'自定义控制时间',
+						key:'/main/dateDemo',
+						icon: 'clock'
+					},
+					{
+						title:'',
+						name:'树形组件',
+						key:'/main/tree',
+						icon: 'levels'
+					}
+				]
+			},
+			{
+				temName: '组件/自定义指令',
+				key:'2',
+				icon: 'usb',
+				temList:[
+					{
+						title:'',
+						name:'可拖拽弹框',
+						key:'/main/dispace',
+						icon:'arrow-move'
+					},
+					// {
+					//   title:'',
+					//   name:'可拖拽弹框2',
+					//   key:'/main/dispaceTwo',
+					// }
+				]
+			},
+			{
+				temName: '统计分析',
+				key:'3',
+				icon: 'ios-pricetag',
+				temList:[
+					{
+						title:'',
+						name:'国际化',
+						key:'/main/i18N',
+					},
+					{
+						title:'说明',
+						name:'用户管理二',
+						key:'3-2',
+					}
+				]
+			}
+		]
+	)
+	export default {
+			filters: {
+				dateformat
+			},
+			data () {
+				return {
+					spanLeft: 5,
+					spanRight: 19,
+					heights: document.documentElement.clientHeight -60,
+					widths: document.documentElement.clientWidth,
+					menuList: menuItems(),
+					openName: [],
+					breadList: [],
+					transitionIf: true,
+				}
+			},
+			computed: {
+				iconSize () {
+					return this.spanLeft === 5 ? 14 : 20;
+				}
+			},
+			components: {loading},
+			created(){
+				localStorage.removeItem("load");
+				this.getMenuFixed(this.$router.currentRoute.path);
+			},
+			mounted(){
+				setTimeout(() => {
+					this.$refs.spin.show = false;
+					this.transitionIf = this.$refs.spin.show;
+				}, 2000);
+				this.heights = document.documentElement.clientHeight - 60;
+				window.onresize = () => {
+					return(() => {
+						this.heights = document.documentElement.clientHeight - 60;
+						if(document.documentElement.clientWidth > 1360) {
+								this.widths = document.documentElement.clientWidth;
+						} else {
+								this.widths = 170;
+						}
+					})()
+				}
+				window.onload = () => {
+					return(() => {
+						this.heights = document.documentElement.clientHeight - 60;
+						this.widths = document.documentElement.clientWidth;
+					})()
+				}
+			},
+			methods: {
+				toggleClick () {
+					if (this.spanLeft === 5) {
+						this.spanLeft = 1;
+						this.spanRight = 23;
+					} else {
+						this.spanLeft = 5;
+						this.spanRight = 19;
+					}
+				},
+				selectionMenu : function(name) {
+					this.$refs.spin.show = true;
+					this.transitionIf = true;
+					setTimeout(() => {
+						this.$refs.spin.show = false;
+						this.transitionIf = this.$refs.spin.show;
+					}, 2000);
+					this.$router.push({path:name});
+					this.getMenuFixed(name);
+				},
+				getMenuFixed : function(name) {
+					this.breadList = [];
+					menuItems().forEach((menu, index) => {
+						menu.temList.forEach((item, index) => {
+							if(item.key === name){
+								let breadF = {
+									breadName: menu.temName,
+									breadHref: ''
+								};
+								let breadS = {
+									breadName: item.name,
+									breadHref: item.key
+								};
+								this.openName.push(menu.key);
+								this.breadList.push(breadF);
+								this.breadList.push(breadS);
+							}
+						})
+					})
+				}
+			}
+	}
 </script>
-<style scoped>
-    .layout >>> .ivu-col-span-1{
-    width: 5%;
+<style lang="scss" scoped>
+		$color_fff: #fff;
+		.drop{
+			color: $color_fff;
+			margin-left: 20px; 
+			float:right;
+		}
+		.drop a{
+			color: $color_fff;
+		}
+		.drop li{
+			color:$color_fff
+		}
+		.drop /deep/ .ivu-select-dropdown {
+			background: #353e44
+		}
+		.drop /deep/ .ivu-dropdown-item:hover {
+			background: #464c5b
+		}
+		.topMenu /deep/ .ivu-menu-dark{
+			background:#353e44
+		}
+		.topMenu_avatar{
+			float: right;
+			position: relative;
+			right: 90px;
+		}
+    .layout-logo{
+        width: 100px;
+        height: 30px;
+        background: #464b56;
+        border-radius: 3px;
+        float: left;
+        position: relative;
+        top: 15px;
+        left: 20px;
     }
-    .layout >>> .ivu-col-span-23 {
-    width: 95%;
+    .layout-nav{
+        width: 420px;
+        margin: 0 auto;
+    }
+    .layout /deep/ .ivu-col-span-1{
+    	width: 5%;
+    }
+    .layout /deep/ .ivu-col-span-23 {
+    	width: 95%;
     }
     /* 可以设置不同的进入和离开动画 */
     /* 设置持续时间和动画函数 */

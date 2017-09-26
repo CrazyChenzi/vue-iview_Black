@@ -48,6 +48,7 @@
             }
         },
         mounted() {
+            console.log(localStorage)
             if(localStorage.loginName !== undefined) {
                 localStorage.removeItem("loginName");
             }
@@ -364,6 +365,8 @@
                     if (valid) {
                         localStorage.loginName = this.formInline.user;
                         localStorage.loginPwd = this.formInline.password;
+                        localStorage.color = 0;
+                        localStorage.colorChange = false;
                         this.$router.push({path:'/main/echarts'})
                         localStorage.removeItem("load");
                         console.log(localStorage,"----")

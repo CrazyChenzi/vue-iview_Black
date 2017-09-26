@@ -26,14 +26,15 @@
 						<Avatar style="color: #f56a00;background-color: #fde3cf">U</Avatar>
 					</Badge>
 				</div>
-				<Dropdown trigger="click" class="drop">
+				<Dropdown trigger="click" class="drop" @on-click="dropClick">
 					<a href="javascript:void(0)">
 							设置
 							<Icon type="arrow-down-b"></Icon>
 					</a>
 					<DropdownMenu slot="list">
 							<DropdownItem>系统设置</DropdownItem>
-							<DropdownItem>退出</DropdownItem>
+							<DropdownItem name="color">切换主题</DropdownItem>
+							<DropdownItem name="exit">退出</DropdownItem>
 					</DropdownMenu>
 				</Dropdown>
 			</Menu>
@@ -94,6 +95,22 @@
 				</div>
 			</i-col>
 		</Row>
+		<Modal v-model="colorModel" @on-cancel="closeColorChange">
+			<p slot="header" style="color:#f60;text-align:center">
+				<Icon type="android-color-palette"></Icon>
+				<span>主题切换</span>
+			</p>
+			<div style="padding-top: 20px">
+				<i-switch size="large" true-value="1" false-value="0" v-model="colorSwitch">
+					<span slot="open">切换</span>
+					<span slot="close">原生</span>
+				</i-switch>
+			</div>
+			<div slot="footer">
+				<Button type="ghost" size="large"  :loading="color_loading" @click="closeColorChange">取消</Button>
+				<Button type="primary" size="large"  :loading="color_loading" @click="colorChange">确定</Button>
+			</div>
+    </Modal>
 	</div>
 </template>
 <script>
@@ -143,6 +160,12 @@
 						key:'/main/dispace',
 						icon:'arrow-move'
 					},
+					{
+						title: '',
+						name: 'table slot header',
+						key: '/main/tableSlotHeader',
+						icon: 'ios-grid-view-outline'
+					}
 					// {
 					//   title:'',
 					//   name:'可拖拽弹框2',
@@ -183,6 +206,9 @@
 					openName: [],
 					breadList: [],
 					transitionIf: true,
+					color_loading: false,
+					colorModel: false,
+					colorSwitch: 0,
 				}
 			},
 			computed: {
@@ -196,10 +222,18 @@
 				this.getMenuFixed(this.$router.currentRoute.path);
 			},
 			mounted(){
+				console.log(localStorage.colorChange)
+				if(localStorage.colorChange === "true") {
+					localStorage.colorChange = false;
+					this.$Notice.success({
+						title: '切换主题成功'
+					});
+				}
+				this.colorSwitch = localStorage.color; 
 				setTimeout(() => {
 					this.$refs.spin.show = false;
 					this.transitionIf = this.$refs.spin.show;
-				}, 2000);
+				}, 1000);
 				this.heights = document.documentElement.clientHeight - 60;
 				window.onresize = () => {
 					return(() => {
@@ -219,6 +253,42 @@
 				}
 			},
 			methods: {
+				dropClick : function (name) {
+					switch(name) {
+						case 'color' : 
+							this.colorModel = true;
+							break;
+						case 'exit' :
+							this.$router.push({path: '/'});
+							localStorage.removeItem("loginName");
+							localStorage.removeItem("loginPwd");
+							localStorage.removeItem("color");
+					}
+				},
+				colorChange : function () {
+					if(this.colorSwitch === localStorage.color) {
+						this.$Modal.confirm({
+							title: "警告！！！",
+							content: "还没有切换主题，确定不进行切换？",
+							okText: 'OK',
+							cancelText: 'BACK',
+							onOk: () => {
+									this.closeColorChange();
+							},
+							onCancel: () => {
+									
+							}
+						});
+					} else {
+						localStorage.color = this.colorSwitch;
+						localStorage.colorChange = true;
+						this.closeColorChange();
+						location.reload();
+					}
+				},
+				closeColorChange : function () {
+					this.colorModel = false;
+				},
 				toggleClick () {
 					if (this.spanLeft === 5) {
 						this.spanLeft = 1;

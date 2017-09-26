@@ -4,8 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import iView from 'iview';
-import 'iview/dist/styles/iview.css';    // 使用 CSS
-import '../my-Theme/my-theme.less';
+// import 'iview/dist/styles/iview.css';    // 使用 CSS
+
 import Icon from 'vue-awesome/components/Icon'
 import 'vue-awesome/icons/flag'
 import ElementUI from 'element-ui'
@@ -17,6 +17,15 @@ import Axios from 'axios'
 Vue.config.productionTip = false;
 
 require('es6-promise').polyfill();
+
+if(localStorage.color === 1 || localStorage.color === "1") {
+  require('../my-Theme/my-theme.less')
+  // require('iview/dist/styles/iview.css')
+}else if(localStorage.color === 0 || localStorage.color === "0") {
+  require('iview/dist/styles/iview.css')
+}else {
+  require('iview/dist/styles/iview.css')
+}
 
 Vue.use(iView);
 Vue.use(ElementUI);

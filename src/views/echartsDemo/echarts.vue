@@ -74,6 +74,9 @@
         mounted(){
           this.tableCreate();
         },
+        beforeRouteLeave (to, from, next){
+          next()
+        },
         methods: {
           //解开chartsList解构  使echarts可以识别
           uncoilChartsList : function() {

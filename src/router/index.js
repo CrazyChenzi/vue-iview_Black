@@ -7,6 +7,7 @@ const Main = resolve => require(['@/views/main/main.vue'], resolve)
 const Tree = resolve => require(['@/views/tree/tree.vue'], resolve)
 const Upload = resolve => require(['@/views/upload/upload.vue'], resolve)
 const Table = resolve => require(['@/views/table/table.vue'], resolve)
+const TableSlotHeader = resolve => require(['@/views/table/tableSlotHeader.vue'], resolve)
 const Dispace = resolve => require(['@/views/dispace/dispace.vue'], resolve)
 // const DispaceTwo = resolve => require(['@/views/dispace/dispaceTwo.vue'], resolve)
 const DateDemo = resolve => require(['@/views/dateDemo/dateDemo.vue'], resolve)
@@ -30,6 +31,7 @@ export default new Router({
         { path: 'tree', meta: { requireAuth: true}, component: Tree }, //树！
         { path: 'upload', meta: { requireAuth: true}, component: Upload }, //上传！
         { path: 'table', meta: { requireAuth: true}, component: Table }, //表格！
+        { path: 'tableSlotHeader', meta: { requireAuth: true}, component: TableSlotHeader }, //表格slot header！
         { path: 'dispace', meta: { requireAuth: true}, component: Dispace }, //可拖拽弹框！
         // { path: 'dispaceTwo', meta: { requireAuth: true}, component: DispaceTwo }, //可拖拽弹框！
         // { path: 'i18N', meta: { requireAuth: true}, component: I18N }, //国际化！

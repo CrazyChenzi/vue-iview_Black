@@ -25,10 +25,26 @@
             type: 'index',
             width: 80,
             align: 'center',
+            renderHeader(h, params) {
+              return h('Tooltip', {
+                props: {
+                  placement: 'right',
+                  content: '序号'
+                }
+              },'序号')
+            },
           },
           {
             type: 'expand',
             width: 50,
+            renderHeader(h, params) {
+              return h('Tooltip', {
+                props: {
+                  placement: 'right',
+                  content: '详细'
+                }
+              },'详')
+            },
             render: (h, params) => {
               return h(expandRow, {
                 props: {
@@ -40,6 +56,14 @@
           {
             title: '姓名',
             key: 'name',
+            renderHeader(h, params) {
+              return h('Tooltip', {
+                props: {
+                  placement: 'right',
+                  content: '姓名'
+                }
+              },'姓名')
+            },
             render: (h, params) => {
               let self = this;
               return h('div', [
@@ -67,6 +91,14 @@
             title: '年龄',
             key: 'age',
             sortable: true,
+            renderHeader(h, params) {
+              return h('Tooltip', {
+                props: {
+                  placement: 'right',
+                  content: '年龄'
+                }
+              },'年龄')
+            },
             render: (h, params) => {
               let self = this;
                 return h('Select',{
@@ -91,6 +123,14 @@
           {
             title: '性别',
             key: 'sex',
+            renderHeader(h, params) {
+              return h('Tooltip', {
+                props: {
+                  placement: 'right',
+                  content: '性别'
+                }
+              },'性别')
+            },
             render: (h, params) => {
               let self = this;
                 return h('Select',{
@@ -116,6 +156,14 @@
           {
             title: 'switch开关slot实现',
             key: 'switchSlot', 
+            renderHeader(h, params) {
+              return h('Tooltip', {
+                props: {
+                  placement: 'right',
+                  content: 'switch开关'
+                }
+              },'switch开关slot实现')
+            },
             render: (h, params) => {
               let self = this;
               return h('i-switch',{
@@ -138,6 +186,14 @@
           {
             title: 'upload上传',
             key: 'switchSlot',
+            renderHeader(h, params) {
+              return h('Tooltip', {
+                props: {
+                  placement: 'right',
+                  content: 'upload'
+                }
+              },'upload上传')
+            },
             render: (h, params) => {
               let self = this;
               let uploadIconList = [{}]
@@ -259,8 +315,6 @@
       //请求mock生成的假数据
       getMock : function () {
         this.axios.get("http://127.1.1.0:8080").then(res => {
-          console.log(this.data1)
-          console.log(res.data.array)
           this.data1 = res.data.array;
         }).catch(res => {
           console.log(res,"---")

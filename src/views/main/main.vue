@@ -143,6 +143,12 @@
 					},
 					{
 						title:'',
+						name:'手动控制上传',
+						key:'/main/upload',
+						icon: 'ios-cloud-upload'
+					},
+					{
+						title:'',
 						name:'树形组件',
 						key:'/main/tree',
 						icon: 'levels'

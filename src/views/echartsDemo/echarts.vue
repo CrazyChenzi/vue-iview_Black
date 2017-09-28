@@ -1,9 +1,6 @@
 <template>
 <div>
-
-  <div id="attendanceTable" style="height:500px">
-
-  </div>
+  <div id="attendanceTable" style="height:500px"></div>
 </div>
 </template>
 <script>
@@ -13,7 +10,7 @@
         data () {
             return {
               option: {
-                // color: ['#3398DB'],
+                color: [ "#2ec7c9", "#b6a2de", "#5ab1ef", '#ffb980', '#8d98b3', '#d87a80', '#ef5055' ],
                 tooltip : {
                     trigger: 'axis',
                     axisPointer : {            // 坐标轴指示器，坐标轴触发有效

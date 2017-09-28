@@ -1,0 +1,101 @@
+$blue:#324157;
+$light-blue:#3A71A8;
+$red:#C03639;
+$pink: #E65D6E;
+$green: #30B08F;
+$tiffany: #4AB7BD;
+$yellow:#FEC171;
+$panGreen: #30B08F;
+$primary:#2d8cf0;
+$info:#2db7f5;
+$success:#19be6b;
+$warning:#f90;
+$error:#ed3f14;
+
+
+@mixin colorBtn($color) {
+  background: $color;
+  &:hover {
+    color: $color;
+    &:before, //在这个元素之前添加
+    &:after { 
+      background: $color;
+    }
+  }
+}
+.blue-btn {
+  @include colorBtn($blue)
+}
+.light-blue-btn {
+  @include colorBtn($light-blue)
+}
+.red-btn {
+  @include colorBtn($red)
+}
+.pink-btn {
+  @include colorBtn($pink)
+}
+.green-btn {
+  @include colorBtn($green)
+}
+.tiffany-btn {
+  @include colorBtn($tiffany)
+}
+.yellow-btn {
+  @include colorBtn($yellow)
+}
+.panGreen-btn {
+  @include colorBtn($panGreen)
+}
+.primary-btn {
+  @include colorBtn($primary)
+}
+.info-btn {
+  @include colorBtn($info)
+}
+.success-btn {
+  @include colorBtn($success)
+}
+.warning-btn {
+  @include colorBtn($warning)
+}
+.error-btn {
+  @include colorBtn($error)
+}
+.pan-btn {
+  font-size: 14px;
+  cursor: pointer;
+  color: #fff;
+  padding: 9px 25px;
+  border-radius: 8px;
+  border: none;
+  outline: none;  //border外层的线
+  // margin-right: 25px;
+  transition: 600ms ease all; //所有渐变速度600ms ease效果
+  position: relative; //相对定位 如果有相对定位  他的子如果是绝对定位  则会跟着去变  反之子为绝对定位  跟随body去变
+  display: inline-block;   // 行内块元素 行内元素不能设置宽高  行内块元素可以
+  &:hover {
+    background: #fff;
+    &:before,
+    &:after {
+      width: 100%;
+      transition: 600ms ease all;
+    }
+  }
+  &:before,
+  &:after {
+    content: '';
+    position: absolute; //绝对定位
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    transition: 400ms ease all;
+  }
+  &::after {
+    right: inherit; //继承父元素
+    top: inherit;
+    left: 0;
+    bottom: 0;
+  }
+}

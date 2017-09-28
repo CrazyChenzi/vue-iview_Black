@@ -367,7 +367,7 @@
                         localStorage.loginPwd = this.formInline.password;
                         localStorage.color = 0;
                         localStorage.colorChange = false;
-                        this.$router.push({path:'/main/echarts'})
+                        this.$router.push({path:'/main/home'})
                         localStorage.removeItem("load");
                         console.log(localStorage,"----")
                     } else {

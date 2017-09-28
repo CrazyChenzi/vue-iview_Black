@@ -114,15 +114,22 @@
 	</div>
 </template>
 <script>
+	import { mapMutations } from 'vuex'
 	import dateformat from '../../filters/dateFormat'
 	import loading from '../../components/spin/spin.vue'
 	const menuItems = () => (
 		[
 			{
-				temName: '首页',
+				temName: 'main',
 				icon: 'home',
 				key:'1',
 				temList:[
+					{
+						title:'',
+						name:'首页',
+						key:'/main/home',
+						icon: 'home'
+					},
 					{
 						title:'',
 						name:'echarts图表',
@@ -163,7 +170,7 @@
 					{
 						title:'',
 						name:'可拖拽弹框',
-						key:'/main/dispace',
+						key:'/main/drag',
 						icon:'arrow-move'
 					},
 					{
@@ -171,6 +178,12 @@
 						name: 'table slot header',
 						key: '/main/tableSlotHeader',
 						icon: 'ios-grid-view-outline'
+					},
+					{
+						title: '',
+						name: '自定义按钮',
+						key: '/main/kbutton',
+						icon: 'minus-round'
 					}
 					// {
 					//   title:'',
@@ -249,16 +262,23 @@
 						} else {
 								this.widths = 170;
 						}
+						this.SET_HEIGHTS(this.heights);
+						this.SET_WIDTHS(this.widths);
 					})()
 				}
 				window.onload = () => {
 					return(() => {
 						this.heights = document.documentElement.clientHeight - 60;
 						this.widths = document.documentElement.clientWidth;
+						this.SET_HEIGHTS(this.heights);
+						this.SET_WIDTHS(this.widths);
 					})()
 				}
 			},
 			methods: {
+				...mapMutations([
+					'SET_HEIGHTS', 'SET_WIDTHS'
+				]),
 				dropClick : function (name) {
 					switch(name) {
 						case 'color' : 
@@ -268,7 +288,7 @@
 							this.$router.push({path: '/'});
 							localStorage.removeItem("loginName");
 							localStorage.removeItem("loginPwd");
-							localStorage.removeItem("color");
+							// localStorage.removeItem("color");
 					}
 				},
 				colorChange : function () {

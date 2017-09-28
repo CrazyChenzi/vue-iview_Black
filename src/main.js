@@ -13,6 +13,8 @@ import 'element-ui/lib/theme-default/index.css'
 // or import all icons if you don't care about bundle size
 import 'vue-awesome/icons'
 import Axios from 'axios'
+import KButton from './components/button/button.vue'
+import store from './store/index'
 
 Vue.config.productionTip = false;
 
@@ -31,6 +33,7 @@ Vue.use(iView);
 Vue.use(ElementUI);
 // Vue.use(Icon);
 Vue.component('icon', Icon);
+Vue.component('KButton', KButton);
 
 Vue.prototype.axios = Axios;
 
@@ -107,6 +110,7 @@ router.beforeEach((to, from, next) => {
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 });

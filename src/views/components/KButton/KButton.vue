@@ -7,6 +7,7 @@
       <KButton type="blue-btn" >B</KButton>
       <KButton type="green-btn" >G</KButton>
       <KButton type="tiffany-btn" >T</KButton>
+      <KButton type="pink-btn" >P</KButton>
       <KButton type="panGreen-btn" >PG</KButton>
       <KButton type="yellow-btn" >Y</KButton>
       <KButton type="primary-btn" >P</KButton>
@@ -20,6 +21,7 @@
       <KButton type="light-blue-btn" icon="ios-search">light-blue</KButton>
       <KButton type="red-btn" icon="checkmark-round">red</KButton>
       <KButton type="blue-btn" icon="chevron-left">blue</KButton>
+      <KButton type="pink-btn" icon="chevron-left">pink</KButton>
       <KButton type="green-btn" icon="chevron-right">green</KButton>
       <KButton type="tiffany-btn" icon="social-googleplus"></KButton>
       <KButton type="panGreen-btn" icon="social-facebook"></KButton>

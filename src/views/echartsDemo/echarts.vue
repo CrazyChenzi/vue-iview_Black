@@ -137,7 +137,7 @@
                         show: true,
                         position: 'insideRight',
                         formatter: function(value){
-                        return value.seriesName
+                          return value.seriesName
                         }
                     }
                 },

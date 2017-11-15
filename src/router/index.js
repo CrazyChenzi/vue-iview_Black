@@ -8,6 +8,7 @@ const Main = resolve => require(['@/views/main/main.vue'], resolve)
 const Tree = resolve => require(['@/views/tree/tree.vue'], resolve)
 const Upload = resolve => require(['@/views/upload/upload.vue'], resolve)
 const Table = resolve => require(['@/views/table/table.vue'], resolve)
+const PrintTable = resolve => require(['@/views/table/printTable.vue'], resolve)
 const DateDemo = resolve => require(['@/views/dateDemo/dateDemo.vue'], resolve)
 const EchartsDemo = resolve => require(['@/views/echartsDemo/echarts.vue'], resolve)
 const NotFound = resolve => require(['@/views/404/404.vue'], resolve)
@@ -36,6 +37,7 @@ export default new Router({
         { path: 'tree', meta: { requireAuth: true}, component: Tree }, //树！
         { path: 'upload', meta: { requireAuth: true}, component: Upload }, //上传！
         { path: 'table', meta: { requireAuth: true}, component: Table }, //表格！
+        { path: 'printTable', meta: { requireAuth: true}, component: PrintTable }, //打印表格！
 
         /** 组件/自定义指令 */
         { path: 'tableSlotHeader', meta: { requireAuth: true}, component: TableSlotHeader }, //表格slot header！

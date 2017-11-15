@@ -1,10 +1,13 @@
 <template>
   <div>
     <Modal title="查看图片" v-model="visible">
-        <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
+      <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
     </Modal>
-     <Table highlight-row :columns="columns3" :data="data1" :row-class-name="setIndex_table" @on-selection-change="selectionTable" @on-select-all="selectionTableAll" 
-     size="small" ref="table"></Table>
+    <Button type="primary" @click="print">打印</Button>
+    <!--<Table highlight-row :columns="columns3" :data="data1" :row-class-name="setIndex_table" @on-selection-change="selectionTable" @on-select-all="selectionTableAll" 
+    size="small" ref="table" id="print"></Table>-->
+
+    <Table :columns="columns1" border  :data="data2" id="print" ref="table"></Table>
   </div>
 </template>
 <script>
@@ -298,6 +301,47 @@
         imgName: '',
         visible: false,
         uploadList: [],
+
+        columns1: [
+            {
+                title: 'Name',
+                key: 'name'
+            },
+            {
+                title: 'Age',
+                key: 'age'
+            },
+            {
+                title: 'Address',
+                key: 'address'
+            }
+        ],
+        data2: [
+            {
+                name: 'John Brown',
+                age: 18,
+                address: 'New York No. 1 Lake Park',
+                date: '2016-10-03'
+            },
+            {
+                name: 'Jim Green',
+                age: 24,
+                address: 'London No. 1 Lake Park',
+                date: '2016-10-01'
+            },
+            {
+                name: 'Joe Black',
+                age: 30,
+                address: 'Sydney No. 1 Lake Park',
+                date: '2016-10-02'
+            },
+            {
+                name: 'Jon Snow',
+                age: 26,
+                address: 'Ottawa No. 2 Lake Park',
+                date: '2016-10-04'
+            }
+        ]
       }
     },
     watch:{
@@ -312,6 +356,27 @@
       this.getMock();
     },
     methods:{
+      print : function () {
+        let tablePrint = this.$refs.table.$el.innerHTML
+        let oPop = window.open('','oPop');  
+        let str = '<!DOCTYPE html>'  
+            str +='<html>'  
+            str +='<head>'  
+            str +='<meta charset="utf-8">'  
+            str +='<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">'  
+            str+='<style>';  
+            str+='.ivu-table-cell{text-align: center; padding: 18px 0} .ivu-table-border th, .ivu-table-border td{border: 1px solid #e9eaec;}';
+            str+='.ivu-table th{height: 40px;background-color: #f8f8f9} th .ivu-table-cell{padding: 0}';  
+            str+='</style>';  
+            str +='</head>'  
+            str +='<body>'  
+            str +='</body>'  
+            str +='</html>'     
+        oPop.document.write(str);
+        oPop.document.body.innerHTML=tablePrint; 
+        oPop.print();  
+        oPop.close(); 
+      },
       //请求mock生成的假数据
       getMock : function () {
         this.axios.get("http://127.1.1.0:8080").then(res => {

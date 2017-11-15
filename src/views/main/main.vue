@@ -144,6 +144,12 @@
 					},
 					{
 						title:'',
+						name:'打印表格',
+						key:'/main/printTable',
+						icon: 'printer'
+					},
+					{
+						title:'',
 						name:'自定义控制时间',
 						key:'/main/dateDemo',
 						icon: 'clock'

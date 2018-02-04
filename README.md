@@ -24,20 +24,20 @@ npm run build --report
 ![image](https://github.com/Blackloser/vue-iview_Black/raw/dev/githubImage/login.gif)
 
 - 首页
-![image](https://github.com/Blackloser/vue-iview_Black/blob/dev/githubImage/home.png)
+![image](https://github.com/Blackloser/vue-iview_Black/raw/dev/githubImage/home.png)
 
 - v-model绑定表格
-![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/table.png)
-![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/table.gif)
+![image](https://github.com/Blackloser/vue-iview_Black/raw/dev/githubImage/table.png)
+![image](https://github.com/Blackloser/vue-iview_Black/raw/dev/githubImage/table.gif)
 
 - 自定义控制不可选时间
-![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/time.gif)
+![image](https://github.com/Blackloser/vue-iview_Black/raw/dev/githubImage/time.gif)
 
 - 手动控制上传
-![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/upload.gif)
+![image](https://github.com/Blackloser/vue-iview_Black/raw/dev/githubImage/upload.gif)
 
 - 按钮权限组件树
-![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/tree.png)
+![image](https://github.com/Blackloser/vue-iview_Black/raw/dev/githubImage/tree.png)
 
 # 项目布局
 

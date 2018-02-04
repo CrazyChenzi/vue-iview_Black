@@ -21,10 +21,10 @@ npm run build --report
 ## 效果展示
 
 - 登录页面
-![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/login.gif)
+![image](https://github.com/Blackloser/vue-iview_Black/raw/dev/githubImage/login.gif)
 
 - 首页
-![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/home.png)
+![image](https://github.com/Blackloser/vue-iview_Black/blob/dev/githubImage/home.png)
 
 - v-model绑定表格
 ![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/table.png)

@@ -18,6 +18,27 @@ npm run build
 npm run build --report
 ```
 
+## 效果展示
+
+- 登录页面
+![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/login.gif)
+
+- 首页
+![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/home.png)
+
+- v-model绑定表格
+![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/table.png)
+![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/table.gif)
+
+- 自定义控制不可选时间
+![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/time.gif)
+
+- 手动控制上传
+![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/upload.gif)
+
+- 按钮权限组件树
+![image](https://github.com/Blackloser/vue-iview_Black/tree/dev/githubImage/tree.png)
+
 # 项目布局
 
 ```
@@ -58,6 +79,7 @@ npm run build --report
 │   │   ├── table
 │   │   │   ├── table_mock.js                   // 生成mock假数据
 │   │   │   ├── table.vue                       // render函数生成upload select.... 实现v-model双向绑定 实现slot分发
+│   │   │   ├── printTable.vue                  // 实现表格打印（记得连打印机）
 │   │   │   ├── tableSlotHeader.vue             // 表格slot header 实现多级表头（需自己实现大多数原有样式）
 │   │   ├── tree
 │   │   │   ├── tree.vue                        // 基于ele树结构 可实现权限按钮的分配（iview树不友好  因此使用了ele）
